@@ -5,10 +5,11 @@ palabras = ["innovación", "crecimiento", "liderazgo", "estrategia", "emprendimi
 
 # Generar una palabra aleatoria
 palabra_aleatoria = random.choice(palabras)
-espacios = palabra_aleatoria.count
+espacios = palabra_aleatoria.split()
+print(espacios)
 #for i in espacios:
     #espacios.append(" _ ")
 
-list(filter(lambda letra: letra == " _ ",espacios))
-print("BIENVENIDOS AL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
-print(f"La Palabra a adivinar tiene: {espacios} letras")
+#list(filter(lambda letra: letra = " _ ",espacios))
+#print("BIENVENIDOS AL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
+#print(f"La Palabra a adivinar tiene: {espacios} letras")
