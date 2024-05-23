@@ -5,11 +5,14 @@ palabras = ["innovación", "crecimiento", "liderazgo", "estrategia", "emprendimi
 
 # Generar una palabra aleatoria
 palabra_aleatoria = list(random.choice(palabras))
-#letras = list(palabra_aleatoria)
-print(palabra_aleatoria)
+
+# Reemplazando las letras por subguiones para mostrar al concursante
 espacios=[]
-#for i in letras:
-    #espacios.append("_")
 list(filter(lambda i: espacios.append("_"),palabra_aleatoria))
+print("\nEMPIEZA EL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
 print(f"La Palabra a adivinar tiene {len(palabra_aleatoria)} letras: {espacios}")
-#print("BIENVENIDOS AL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
+print("Tienes 5 vidas. Por cada intento erróneo perderás 1. Pierdes el juego al llegar a 0 vidas.\n¡Mucha Suerte!\n")
+
+# Variables y frases de las condiciones del juego
+vidas=5
+intentos_incorrectos=5
