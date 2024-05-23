@@ -4,12 +4,12 @@ import random
 palabras = ["innovación", "crecimiento", "liderazgo", "estrategia", "emprendimiento", "negocios", "éxito", "mercado"]
 
 # Generar una palabra aleatoria
-palabra_aleatoria = random.choice(palabras)
-espacios = palabra_aleatoria.split()
-print(espacios)
-#for i in espacios:
-    #espacios.append(" _ ")
-
-#list(filter(lambda letra: letra = " _ ",espacios))
+palabra_aleatoria = list(random.choice(palabras))
+#letras = list(palabra_aleatoria)
+print(palabra_aleatoria)
+espacios=[]
+#for i in letras:
+    #espacios.append("_")
+list(filter(lambda i: espacios.append("_"),palabra_aleatoria))
+print(f"La Palabra a adivinar tiene {len(palabra_aleatoria)} letras: {espacios}")
 #print("BIENVENIDOS AL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
-#print(f"La Palabra a adivinar tiene: {espacios} letras")
