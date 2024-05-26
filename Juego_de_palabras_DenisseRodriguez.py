@@ -46,14 +46,14 @@ def completar_palabra(espacios,letras_adivinar,letra):
 
 #Bievenida al Juego
 print("\nEMPIEZA EL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
-respuesta = input("¿Quieres jugar? \n Responde Si o No")
+respuesta = input("¿Quieres jugar? \n Responde Si o No: ")
 try:
     if respuesta.lower() == "si":
         print("¡VAMOS! ¡Comencemos a Jugar!")
-        name=input("Ingresa tu nombre").upper()
+        name=input("Ingresa tu nombre: ").upper()
         print(f"Ok {name}, la palabra a adivinar tiene {len(palabra_aleatoria)} letras: {espacios}")
         print("Tienes 5 vidas. Por cada intento erróneo perderás 1. Pierdes el juego al llegar a 0 vidas.\n¡Mucha Suerte!\n")
-        completar_palabra()
+        completar_palabra(espacios,letras_adivinar,letra)
     else:
         print("¡Hasta la próxima!")
         exit()
