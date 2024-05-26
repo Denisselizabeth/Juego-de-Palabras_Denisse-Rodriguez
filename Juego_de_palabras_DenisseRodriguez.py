@@ -8,61 +8,54 @@ desaciertos = 0
 
 # Generar una palabra aleatoria
 palabra_aleatoria = list(random.choice(palabras).lower())
-#def elegir_palabra(palabras):
-    #palabra_aleatoria = choice(palabras)
-    #return palabra_aleatoria.upper()
-letras_adivinar=set(palabra_aleatoria)  
+letras_adivinar = set(palabra_aleatoria)
 
+# Reemplazando las letras por guiones bajos para mostrar al concursante
+espacios = ["_"] * len(palabra_aleatoria)
 
-# Reemplazando las letras por subguiones para mostrar al concursante
-espacios=[]
-list(filter(lambda i: espacios.append("_"),palabra_aleatoria))
-
-#validando el type de la letra
-def input_letra(letra):
+# Validando el tipo de la letra
+def input_letra():
     while True:
-        if len(letra) == 1 and isinstance(letra, str):
-            #return letra
-            completar_palabra(espacios,letras_adivinar,letra)
-            break
+        letra = input("Ingresa una letra para completar la palabra: ").upper()
+        if len(letra) == 1 and letra.isalpha():
+            return letra
         else:
-            print("Ingresate un dato inválido·")
+            print("Ingresaste un dato inválido. Por favor, ingresa una sola letra.")
 
-#validando continuidad en el juego
-
-
-#Completando la palabra
-def completar_palabra(espacios,letras_adivinar,letra):
+# Completando la palabra
+def completar_palabra(espacios, letras_adivinar, letra):
     global vidas, aciertos, desaciertos
-    if letra in letras_adivinar:
+    if letra.lower() in letras_adivinar:
         for i in range(len(palabra_aleatoria)):
-            if palabra_aleatoria[i]==letra:
-                espacios[i]=letra
-                aciertos+=1
-        print (f"¡Muy bien!. Ganaste la partida. \nAhora te falta completar:{espacios}")
-        print(f"Tu status en el juego es:\n Vidas: {vidas} \n Aciertos: {aciertos} \n Desaciertos: {desaciertos}")
+            if palabra_aleatoria[i] == letra.lower():
+                espacios[i] = letra.upper()
+                aciertos += 1
+        print(f"¡Muy bien! Sigues adivinando. Ahora te falta completar: {espacios}")
     else:
-        desaciertos+=1
-        vidas-=1
-        print (f"¡Oh no ='(!. Perdista la partida pero sigues participando. \nAún falta por completar más letras:{espacios}")
-        print(f"Tu status en el juego es:\n Vidas: {vidas} --- Aciertos: {aciertos} --- Desaciertos: {desaciertos}")
+        desaciertos += 1
+        vidas -= 1
+        print(f"¡Oh no! La letra {letra} no está en la palabra. Te quedan {vidas} vidas.")
+    
+    print(f"Tu status en el juego es:\n Vidas: {vidas} \n Aciertos: {aciertos} \n Desaciertos: {desaciertos}")
     return espacios
-print (espacios)
 
-#Bievenida al Juego
+# Bienvenida al Juego
 print("\nEMPIEZA EL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
-respuesta = input("¿Quieres jugar? \n Responde Si o No: ")
+respuesta = input("¿Quieres jugar? \n Responde Sí o No: ")
 if respuesta.lower() == "si":
     print("¡VAMOS! ¡Comencemos a Jugar!")
-    name=input("Ingresa tu nombre: ").upper()
+    name = input("Ingresa tu nombre: ").upper()
     print(f"Ok {name}, la palabra a adivinar tiene {len(palabra_aleatoria)} letras: {espacios}")
     print("Tienes 5 vidas. Por cada intento erróneo perderás 1. Pierdes el juego al llegar a 0 vidas.\n¡Mucha Suerte!\n")
-    while vidas>=1: #and aciertos<len(letras_adivinar):
+    
+    while vidas > 0:
         print("\nSigamos jugando...")
-        letra=str(input("Ingresa una letra para completar la palabra: ").upper())
-        input_letra(letra)
+        letra = input_letra()
+        completar_palabra(espacios, letras_adivinar, letra)
+        if "_" not in espacios:
+            print(f"¡Felicidades {name}! Has adivinado la palabra: {''.join(palabra_aleatoria).upper()}")
+            break
     else:
-        print(f"¡Perdiste el Juego! La palabra era: {palabra_aleatoria}")
+        print(f"¡Perdiste el Juego! La palabra era: {''.join(palabra_aleatoria).upper()}")
 else:
     print("Okis ¡Hasta la próxima!")
-    exit()
