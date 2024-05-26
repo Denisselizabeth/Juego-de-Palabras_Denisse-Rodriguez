@@ -23,7 +23,6 @@ list(filter(lambda i: espacios.append("_"),palabra_aleatoria))
 def completar_palabra(espacios,letras_adivinar,letra):
     while vidas>=1 and aciertos<len(letras_adivinar):
         print("Seguimos jugando...")
-        letra=str(input("Ingresa una letra para completar la palabra").lower())
         try:
             if letra in letras_adivinar:
                 for i in range(len(palabra_aleatoria)):
@@ -53,6 +52,7 @@ try:
         name=input("Ingresa tu nombre: ").upper()
         print(f"Ok {name}, la palabra a adivinar tiene {len(palabra_aleatoria)} letras: {espacios}")
         print("Tienes 5 vidas. Por cada intento erróneo perderás 1. Pierdes el juego al llegar a 0 vidas.\n¡Mucha Suerte!\n")
+        letra=str(input("Ingresa una letra para completar la palabra").lower())
         completar_palabra(espacios,letras_adivinar,letra)
     else:
         print("¡Hasta la próxima!")
