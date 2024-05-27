@@ -1,4 +1,5 @@
 import random
+import unidecode
 
 # Variables: Lista de palabras y condiciones del juego
 palabras = ["innovación", "crecimiento", "liderazgo", "estrategia", "emprendimiento", "negocios", "éxito", "mercado"]
@@ -8,7 +9,7 @@ desaciertos = 0
 
 # Generar una palabra aleatoria
 palabra_aleatoria = list(random.choice(palabras).lower())
-letras_adivinar = set(palabra_aleatoria)
+letras_adivinar = set(unidecode.unidecode(''.join(palabra_aleatoria)))
 
 # Reemplazando las letras por guiones bajos para mostrar al concursante
 espacios = ["_"] * len(palabra_aleatoria)
@@ -25,10 +26,11 @@ def input_letra():
 # Completando la palabra
 def completar_palabra(espacios, letras_adivinar, letra):
     global vidas, aciertos, desaciertos
-    if letra.lower() in letras_adivinar:
+    letra_normalizada = unidecode.unidecode(letra.lower())
+    if letra_normalizada in letras_adivinar:
         for i in range(len(palabra_aleatoria)):
-            if palabra_aleatoria[i] == letra.lower():
-                espacios[i] = letra.upper()
+            if unidecode.unidecode(palabra_aleatoria[i]) == letra_normalizada:
+                espacios[i] = palabra_aleatoria[i].upper()
                 aciertos += 1
         print(f"¡Muy bien! Sigues adivinando. Ahora te falta completar: {espacios}")
     else:
@@ -43,7 +45,7 @@ def completar_palabra(espacios, letras_adivinar, letra):
 print("\nEMPIEZA EL GRAN JUEGO INTERACTIVO ¡ADIVINA LA PALABRA!\n")
 respuesta = input("¿Quieres jugar? \n Responde Sí o No: ")
 if respuesta.lower() == "si":
-    print("¡VAMOS! ¡Comencemos a Jugar!")
+    print("¡VAAAAMOOOSSSSS! ¡Comencemos a Jugar!")
     name = input("Ingresa tu nombre: ").upper()
     print(f"Ok {name}, la palabra a adivinar tiene {len(palabra_aleatoria)} letras: {espacios}")
     print("Tienes 5 vidas. Por cada intento erróneo perderás 1. Pierdes el juego al llegar a 0 vidas.\n¡Mucha Suerte!\n")
